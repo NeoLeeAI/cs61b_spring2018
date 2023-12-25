@@ -108,7 +108,8 @@ public class IntList {
             A = A.rest;
             pre = pre.rest;
         }
-        return dcatenate(res, B);
+        pre.rest = B;
+        return pre;
     }
 
 
