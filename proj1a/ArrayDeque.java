@@ -27,10 +27,11 @@ public class ArrayDeque<T> {
     }
 
     private void downSize() {
-        T[] a = (T []) new Object[(int) (size * 0.5)];
+        T[] a = (T []) new Object[(int) (items.length * 0.5)];
         for (int i = 0; i < size; i++) {
             a[i] = get(i);
         }
+        items = a;
         nextFirst = items.length - 1;
         nextLast = size;
     }
@@ -98,7 +99,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if (index < 0 || index > size - 1) {
+        if (index < 0 || index > size - 1 || size == 0) {
             return null;
         }
         return items[(nextFirst + 1 + index) % items.length];
