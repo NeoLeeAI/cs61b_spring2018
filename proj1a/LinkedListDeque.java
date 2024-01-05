@@ -1,4 +1,4 @@
-public class LinkedListDeque <T>{
+public class LinkedListDeque<T> {
     private class Node {
         private T item;
         private Node prev;
@@ -25,7 +25,7 @@ public class LinkedListDeque <T>{
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         for (int i = 0; i < other.size(); i++) {
-            addLast((T)other.get(i));
+            addLast((T) other.get(i));
         }
     }
 
@@ -66,7 +66,7 @@ public class LinkedListDeque <T>{
         }
         size -= 1;
         T item = sentinel.next.item;
-        sentinel.next.next.prev =sentinel;
+        sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         return item;
     }
@@ -87,7 +87,7 @@ public class LinkedListDeque <T>{
             return null;
         }
         Node temp = sentinel;
-        while(index >= 0) {
+        while (index >= 0) {
             temp = temp.next;
             index -= 1;
         }

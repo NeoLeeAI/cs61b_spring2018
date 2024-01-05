@@ -35,27 +35,26 @@ public class ArrayDequeTest {
      * && is the "and" operation. */
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
-        ArrayDeque<String> lld1 = new ArrayDeque<>();
+        ArrayDeque<String> ad1 = new ArrayDeque<>();
 
-        boolean passed = checkEmpty(true, lld1.isEmpty());
+        boolean passed = checkEmpty(true, ad1.isEmpty());
 
-        lld1.addFirst("front");
+        ad1.addFirst("front");
 
         // The && operator is the same as "and" in Python.
         // It's a binary operator that returns true if both arguments true, and false otherwise.
-        passed = checkSize(1, lld1.size()) && passed;
-        passed = checkEmpty(false, lld1.isEmpty()) && passed;
+        passed = checkSize(1, ad1.size()) && passed;
+        passed = checkEmpty(false, ad1.isEmpty()) && passed;
 
-        lld1.addLast("middle");
-        passed = checkSize(2, lld1.size()) && passed;
+        ad1.addLast("middle");
+        passed = checkSize(2, ad1.size()) && passed;
 
-        lld1.addLast("back");
-        passed = checkSize(3, lld1.size()) && passed;
+        ad1.addLast("back");
+        passed = checkSize(3, ad1.size()) && passed;
 
         System.out.println("Printing out deque: ");
-        lld1.printDeque();
+        ad1.printDeque();
 
         printTestStatus(passed);
     }
@@ -64,8 +63,6 @@ public class ArrayDequeTest {
     public static void addRemoveTest() {
 
         System.out.println("Running add/remove test.");
-
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         ArrayDeque<Integer> lld1 = new ArrayDeque<>();
         // should be empty
@@ -86,22 +83,53 @@ public class ArrayDequeTest {
     public static void addGetTest() {
         System.out.println("Running add/get test.");
 
-        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-
         ArrayDeque<Integer> lld1 = new ArrayDeque<>();
 
         lld1.addFirst(10);
 
         lld1.addFirst(20);
-        //should print 20
+        //should be true
         boolean passed = (20 == lld1.get(0));
+        printTestStatus(passed);
+    }
+
+    public static void getTest() {
+        System.out.println("Running get test.");
+
+        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+        for (int i = 0; i < 7; i++) {
+            ad1.addLast(i);
+        }
+        System.out.println(ad1.removeFirst());
+        ad1.addLast(9);
+        ad1.addLast(10);
+        System.out.println(ad1.removeFirst());
+        boolean passed = (ad1.get(6) == 10);
+
+        printTestStatus(passed);
+    }
+
+    public static void getResizeTest() {
+        System.out.println("Running get/resize test.");
+
+        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+        for (int i = 0; i < 10; i++) {
+            ad1.addLast(i);
+        }
+        System.out.println(ad1.removeFirst());
+        ad1.addLast(9);
+        ad1.addLast(10);
+        System.out.println(ad1.removeFirst());
+        boolean passed = (ad1.get(8) == 10);
+
         printTestStatus(passed);
     }
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-        addIsEmptySizeTest();
+        /* addIsEmptySizeTest();
         addRemoveTest();
-        addGetTest();
+        addGetTest();*/
+        getTest();
     }
 }
