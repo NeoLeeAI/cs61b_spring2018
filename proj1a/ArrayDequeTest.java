@@ -98,10 +98,54 @@ public class ArrayDequeTest {
         printTestStatus(passed);
     }
 
+    public static void randomRemoveAddTest() {
+        System.out.println("Running random add/remove test.");
+        ArrayDeque<Integer> ad1 = new ArrayDeque<>();
+
+        ad1.addLast(0);
+
+        boolean passed = (ad1.removeFirst() == 0);
+
+        ad1.addFirst(2);
+
+        ad1.addFirst(3);
+
+        ad1.addLast(4);
+
+        passed = (ad1.get(1) == 2) && passed;
+
+        passed = (ad1.removeLast()  == 4) && passed;
+
+        passed = (ad1.get(1)  == 2) && passed;
+
+        ad1.addLast(8);
+
+        passed = (ad1.get(2)  == 8) && passed;
+
+        passed = (ad1.removeFirst() == 3) && passed;
+
+        passed = (ad1.removeLast() == 8) && passed;
+
+        ad1.addLast(12);
+
+        passed = (ad1.removeFirst() == 2) && passed;
+
+        passed = (ad1.removeLast() == 12) && passed;
+
+        ad1.addLast(15);
+
+        passed = (ad1.removeFirst() == 15) && passed;
+
+        ad1.addFirst(17);
+
+        printTestStatus(passed);
+    }
+
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
         addRemoveTest();
         addGetTest();
+        randomRemoveAddTest();
     }
 }

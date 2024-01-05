@@ -10,12 +10,6 @@ public class ArrayDeque<T> {
         nextLast = 1;
     }
 
-    public ArrayDeque(ArrayDeque other) {
-        items = (T []) new Object[other.size()];
-        size = other.size();
-        System.arraycopy(other, 0, items, 0, size);
-    }
-
     private void upSize() {
         T[] a = (T []) new Object[size * 2];
         for (int i = 0; i < size; i++) {
@@ -78,7 +72,7 @@ public class ArrayDeque<T> {
         T item = items[nextFirst];
         items[nextFirst] = null;
         size -= 1;
-        if (size <= items.length * 0.25) {
+        if ((size <= items.length * 0.25) && (size != 0)) {
             downSize();
         }
         return item;
@@ -92,7 +86,7 @@ public class ArrayDeque<T> {
         T item = items[nextLast];
         items[nextLast] = null;
         size -= 1;
-        if (size <= items.length * 0.25) {
+        if ((size <= items.length * 0.25) && (size != 0)) {
             downSize();
         }
         return item;
