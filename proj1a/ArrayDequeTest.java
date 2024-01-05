@@ -82,25 +82,15 @@ public class ArrayDequeTest {
     public static void addGetTest() {
         System.out.println("Running add/get test.");
 
-        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
-
-        lld1.addFirst(10);
-
-        lld1.addFirst(20);
-        //should be true
-        boolean passed = (20 == lld1.get(0));
-        printTestStatus(passed);
-    }
-
-    public static void getTest() {
-        System.out.println("Running get test.");
-
-        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
-        for (int i = 0; i < 8; i++) {
+        ArrayDeque<Integer> ad1 = new ArrayDeque<>();
+        for (int i = 0; i < 40; i++) {
             ad1.addLast(i);
         }
-        boolean passed = (ad1.get(0) == 0);
-        passed = (ad1.get(1) == 1) && passed;
+        //should be true
+        boolean passed = true;
+        for (int i = 0; i < 40; i++) {
+            passed = (i == ad1.get(i)) && passed;
+        }
         printTestStatus(passed);
     }
 
@@ -109,6 +99,5 @@ public class ArrayDequeTest {
         addIsEmptySizeTest();
         addRemoveTest();
         addGetTest();
-        getTest();
     }
 }

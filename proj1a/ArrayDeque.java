@@ -11,21 +11,15 @@ public class ArrayDeque<T> {
     }
 
     public ArrayDeque(ArrayDeque other) {
-        items = (T []) new Object[other.size() + 1];
+        items = (T []) new Object[other.size()];
         size = other.size();
-        for (int i = 0; i < other.size(); i++) {
-            items[i] = (T) other.get(i);
-        }
-        nextFirst = items.length - 1;
-        nextLast = items.length - 1;
+        System.arraycopy(other, 0, items, 0, size);
     }
 
-    private void resize() {
+    private void upSize() {
         T[] a = (T []) new Object[size * 2];
-        int oldFront = (nextFirst + 1) % items.length;
         for (int i = 0; i < size; i++) {
-            a[i] = items[oldFront];
-            oldFront = (oldFront + 1) % items.length;
+            a[i] = get(i);
         }
         items = a;
         nextFirst = items.length - 1;
@@ -34,19 +28,16 @@ public class ArrayDeque<T> {
 
     private void downSize() {
         T[] a = (T []) new Object[(int) (size * 0.5)];
-        int oldFront = (nextFirst + 1) % items.length;
         for (int i = 0; i < size; i++) {
-            a[i] = items[oldFront];
-            oldFront = (oldFront + 1) % items.length;
+            a[i] = get(i);
         }
-        items = a;
         nextFirst = items.length - 1;
         nextLast = size;
     }
 
     public void addFirst(T item) {
         if (size == items.length) {
-            resize();
+            upSize();
         }
         items[nextFirst] = item;
         nextFirst = (nextFirst - 1 + items.length) % items.length;
@@ -55,7 +46,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T item) {
         if (size == items.length) {
-            resize();
+            upSize();
         }
         items[nextLast] = item;
         nextLast = (nextLast + 1) % items.length;
