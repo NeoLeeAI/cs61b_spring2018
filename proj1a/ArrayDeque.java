@@ -21,15 +21,27 @@ public class ArrayDeque<T> {
     }
 
     private void resize() {
-        T[] temp = (T []) new Object[size * 2];
+        T[] a = (T []) new Object[size * 2];
+        int oldFront = (nextFirst + 1) % items.length;
         for (int i = 0; i < size; i++) {
-            temp[i] = items[i];
+            a[i] = items[oldFront];
+            oldFront = (oldFront + 1) % items.length;
         }
-        items = temp;
+        items = a;
+        nextFirst = items.length - 1;
+        nextLast = size;
     }
 
     private void downSize() {
-
+        T[] a = (T []) new Object[(int) (size * 0.5)];
+        int oldFront = (nextFirst + 1) % items.length;
+        for (int i = 0; i < size; i++) {
+            a[i] = items[oldFront];
+            oldFront = (oldFront + 1) % items.length;
+        }
+        items = a;
+        nextFirst = items.length - 1;
+        nextLast = size;
     }
 
     public void addFirst(T item) {
@@ -74,6 +86,9 @@ public class ArrayDeque<T> {
         T item = items[nextFirst];
         items[nextFirst] = null;
         size -= 1;
+        if (size <= items.length * 0.25) {
+            downSize();
+        }
         return item;
     }
 
@@ -85,6 +100,9 @@ public class ArrayDeque<T> {
         T item = items[nextLast];
         items[nextLast] = null;
         size -= 1;
+        if (size <= items.length * 0.25) {
+            downSize();
+        }
         return item;
     }
 

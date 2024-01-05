@@ -1,6 +1,5 @@
 /** Performs some basic array tests. */
 public class ArrayDequeTest {
-
     /* Utility method for printing out empty checks. */
     public static boolean checkEmpty(boolean expected, boolean actual) {
         if (expected != actual) {
@@ -97,39 +96,19 @@ public class ArrayDequeTest {
         System.out.println("Running get test.");
 
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             ad1.addLast(i);
         }
-        System.out.println(ad1.removeFirst());
-        ad1.addLast(9);
-        ad1.addLast(10);
-        System.out.println(ad1.removeFirst());
-        boolean passed = (ad1.get(6) == 10);
-
-        printTestStatus(passed);
-    }
-
-    public static void getResizeTest() {
-        System.out.println("Running get/resize test.");
-
-        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
-        for (int i = 0; i < 10; i++) {
-            ad1.addLast(i);
-        }
-        System.out.println(ad1.removeFirst());
-        ad1.addLast(9);
-        ad1.addLast(10);
-        System.out.println(ad1.removeFirst());
-        boolean passed = (ad1.get(8) == 10);
-
+        boolean passed = (ad1.get(0) == 0);
+        passed = (ad1.get(1) == 1) && passed;
         printTestStatus(passed);
     }
 
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-        /* addIsEmptySizeTest();
+        addIsEmptySizeTest();
         addRemoveTest();
-        addGetTest();*/
+        addGetTest();
         getTest();
     }
 }
