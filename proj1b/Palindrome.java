@@ -10,36 +10,36 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        Deque<Character> word_deque = wordToDeque(word);
-        return isPalindromeHelper(word_deque);
+        Deque<Character> deque = wordToDeque(word);
+        return isPalindromeHelper(deque);
     }
 
-    private boolean isPalindromeHelper(Deque<Character> word_deque) {
-        if (word_deque.size() == 1 || word_deque.isEmpty()) {
+    private boolean isPalindromeHelper(Deque<Character> deque) {
+        if (deque.size() == 1 || deque.isEmpty()) {
             return true;
         }
-        char first = word_deque.removeFirst();
-        char last = word_deque.removeLast();
+        char first = deque.removeFirst();
+        char last = deque.removeLast();
         if (first != last) {
             return false;
         }
-        return isPalindromeHelper(word_deque);
+        return isPalindromeHelper(deque);
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        Deque<Character> word_deque = wordToDeque(word);
-        return isPalindromeHelper(word_deque, cc);
+        Deque<Character> deque = wordToDeque(word);
+        return isPalindromeHelper(deque, cc);
     }
 
-    private boolean isPalindromeHelper(Deque<Character> word_deque, CharacterComparator cc) {
-        if (word_deque.size() == 1 || word_deque.isEmpty()) {
+    private boolean isPalindromeHelper(Deque<Character> deque, CharacterComparator cc) {
+        if (deque.size() == 1 || deque.isEmpty()) {
             return true;
         }
-        char first = word_deque.removeFirst();
-        char last = word_deque.removeLast();
+        char first = deque.removeFirst();
+        char last = deque.removeLast();
         if (!cc.equalChars(first, last)) {
             return false;
         }
-        return isPalindromeHelper(word_deque, cc);
+        return isPalindromeHelper(deque, cc);
     }
 }
